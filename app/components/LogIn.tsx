@@ -1,4 +1,4 @@
-const PostPage = () => {
+const LogIn = () => {
   return (
     <div>
       <h1>Hello</h1>
@@ -6,4 +6,4 @@ const PostPage = () => {
   );
 };
 
-export default PostPage;
+export default LogIn;
