@@ -6,11 +6,6 @@ import { RiHome9Line } from "react-icons/ri";
 import { RiHome9Fill } from "react-icons/ri";
 import { PiMagnifyingGlass } from "react-icons/pi";
 import { PiMagnifyingGlassBold } from "react-icons/pi";
-import { FaRegUser } from "react-icons/fa6";
-import { FaUser } from "react-icons/fa6";
-import { HiPlus } from "react-icons/hi";
-import { BsGear } from "react-icons/bs";
-import { BsFillGearFill } from "react-icons/bs";
 import { RiAccountCircleLine } from "react-icons/ri";
 import { RiAccountCircleFill } from "react-icons/ri";
 
