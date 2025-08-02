@@ -13,6 +13,8 @@ import { RiAccountCircleFill } from "react-icons/ri";
 import { CiLogin } from "react-icons/ci";
 import { CiLogout } from "react-icons/ci";
 import { GoPerson } from "react-icons/go";
+import { RiExpandLeftLine } from "react-icons/ri";
+import { RiExpandRightLine } from "react-icons/ri";
 
 import { IconType } from "react-icons/lib";
 
@@ -22,25 +24,28 @@ const Navbar = () => {
   const [page, setPage] = useState<
     "home" | "explore" | "settings" | "profile" | "login" | "settings"
   >("home");
-
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
-
   const [showProfileDisplay, setShowProfileDisplay] = useState<boolean>(false);
+  const [isExpanded, setIsExpanded] = useState<boolean>(true);
 
   return (
     <nav
-      className={`fixed left-0 flex h-full w-18 flex-col items-center justify-start border-t border-r border-neutral-800 bg-black py-4 lg:w-58`}
+      className={`fixed left-0 flex h-full flex-col items-center justify-start border-t border-r border-neutral-800 bg-black py-4 ${isExpanded ? "w-58" : "w-18"}`}
     >
+      <button
+        className="absolute right-[-55px] flex cursor-pointer items-center justify-end rounded-md bg-[hsl(0_0%_12%)] p-1.5 text-[1.65rem] text-white/70 transition-all duration-300 ease-in-out hover:text-white"
+        onClick={() => setIsExpanded((prev) => !prev)}
+      >
+        {isExpanded ? <RiExpandLeftLine /> : <RiExpandRightLine />}
+      </button>
       <NavbarBtn
         title={"home"}
         Icon={RiHome9Line}
         FilledIcon={RiHome9Fill}
         page={page}
         setPage={setPage}
-        isLoggedIn={isLoggedIn}
-        setIsLoggedIn={setIsLoggedIn}
-        showProfileDisplay={showProfileDisplay}
         setShowProfileDisplay={setShowProfileDisplay}
+        isExpanded={isExpanded}
       />
       <NavbarBtn
         title={"explore"}
@@ -48,10 +53,8 @@ const Navbar = () => {
         FilledIcon={PiMagnifyingGlassBold}
         page={page}
         setPage={setPage}
-        isLoggedIn={isLoggedIn}
-        setIsLoggedIn={setIsLoggedIn}
-        showProfileDisplay={showProfileDisplay}
         setShowProfileDisplay={setShowProfileDisplay}
+        isExpanded={isExpanded}
       />
       <NavbarBtn
         title={"settings"}
@@ -59,10 +62,8 @@ const Navbar = () => {
         FilledIcon={PiGearFill}
         page={page}
         setPage={setPage}
-        isLoggedIn={isLoggedIn}
-        setIsLoggedIn={setIsLoggedIn}
-        showProfileDisplay={showProfileDisplay}
         setShowProfileDisplay={setShowProfileDisplay}
+        isExpanded={isExpanded}
       />
       <NavbarBtn
         title={"profile"}
@@ -70,18 +71,13 @@ const Navbar = () => {
         FilledIcon={RiAccountCircleFill}
         page={page}
         setPage={setPage}
-        isLoggedIn={isLoggedIn}
-        setIsLoggedIn={setIsLoggedIn}
-        showProfileDisplay={showProfileDisplay}
         setShowProfileDisplay={setShowProfileDisplay}
+        isExpanded={isExpanded}
       />
-      {showProfileDisplay ? (
+      {showProfileDisplay && isExpanded ? (
         <ProfileDisplay
-          page={page}
           setPage={setPage}
           isLoggedIn={isLoggedIn}
-          setIsLoggedIn={setIsLoggedIn}
-          showProfileDisplay={showProfileDisplay}
           setShowProfileDisplay={setShowProfileDisplay}
         />
       ) : null}
@@ -99,10 +95,8 @@ type NavbarBtnProps = {
   setPage: Dispatch<
     SetStateAction<"home" | "explore" | "settings" | "profile" | "login">
   >;
-  isLoggedIn: boolean;
-  setIsLoggedIn: Dispatch<SetStateAction<boolean>>;
-  showProfileDisplay: boolean;
   setShowProfileDisplay: Dispatch<SetStateAction<boolean>>;
+  isExpanded: boolean;
 };
 
 const NavbarBtn = ({
@@ -112,36 +106,43 @@ const NavbarBtn = ({
   page,
   setPage,
   setShowProfileDisplay,
+  isExpanded,
 }: NavbarBtnProps) => {
   return (
     <span
-      className={`flex cursor-pointer items-center justify-start rounded-md p-1.5 transition-all duration-300 ease-in-out hover:bg-[hsl(0_0%_12%)] lg:w-50 ${page === title ? "text-red-400" : "text-white"} ${title !== "profile" ? "mb-1" : ""}`}
-      onClick={
-        title !== "profile"
-          ? () => setPage(title)
-          : () => setShowProfileDisplay((prev) => !prev)
-      }
+      className={`flex cursor-pointer items-center justify-start rounded-md p-1.5 transition-all duration-300 ease-in-out hover:bg-[hsl(0_0%_12%)] ${page === title ? "text-red-400" : "text-white"} ${title !== "profile" ? "mb-1" : ""} ${isExpanded ? "w-50" : ""}`}
+      onClick={() => {
+        if (title === "profile") {
+          if (!isExpanded) {
+            setPage("profile");
+          }
+          setShowProfileDisplay((prev) => !prev);
+        } else {
+          setPage(title);
+          setShowProfileDisplay(false);
+        }
+      }}
     >
-      <span className="text-[1.65rem] lg:mr-2">
-        <Link href={`/${title}`}>
+      <span className={`text-[1.65rem] ${isExpanded ? "mr-2" : ""}`}>
+        <Link href={`/${title === "home" ? "" : title}`}>
           {page === title ? <FilledIcon /> : <Icon />}
         </Link>
       </span>
-      <span className="hidden text-[1.1rem] font-medium lg:flex">
-        {title.charAt(0).toUpperCase() + title.slice(1)}
-      </span>
+
+      {isExpanded ? (
+        <span className="text-[1.1rem] font-medium">
+          {title.charAt(0).toUpperCase() + title.slice(1)}
+        </span>
+      ) : null}
     </span>
   );
 };
 
 type ProfileDisplayProps = {
-  page: "home" | "explore" | "settings" | "profile" | "login";
   setPage: Dispatch<
     SetStateAction<"home" | "explore" | "settings" | "profile" | "login">
   >;
   isLoggedIn: boolean;
-  setIsLoggedIn: Dispatch<SetStateAction<boolean>>;
-  showProfileDisplay: boolean;
   setShowProfileDisplay: Dispatch<SetStateAction<boolean>>;
 };
 
@@ -150,14 +151,15 @@ const ProfileDisplay = ({
   isLoggedIn,
   setShowProfileDisplay,
 }: ProfileDisplayProps) => {
-  const onClick = () => {
+  const toggleProfileDisplay = () => {
     setShowProfileDisplay(false);
     setPage("profile");
   };
+
   return (
     <div
-      className="z-50 mt-2 hidden w-50 flex-col rounded-md bg-neutral-900 p-1 lg:flex"
-      onClick={onClick}
+      className="z-50 mt-2 w-50 flex-col rounded-md bg-neutral-900 p-1"
+      onClick={toggleProfileDisplay}
     >
       <Link href="/profile">
         <span className="text-md flex cursor-pointer items-center justify-start rounded-md p-1.5 font-medium text-white transition-all duration-300 ease-in-out hover:bg-[hsl(0_0%_12%)]">
