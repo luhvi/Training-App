@@ -1,6 +1,6 @@
 import "./globals.css";
 
-import Navbar from "./ui/Navbar";
+import Sidebar from "./ui/Navbar";
 
 export default function RootLayout({
   children,
@@ -22,7 +22,7 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <Navbar />
+        <Sidebar />
         {children}
       </body>
     </html>

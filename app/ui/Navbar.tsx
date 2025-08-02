@@ -20,11 +20,11 @@ import { IconType } from "react-icons/lib";
 
 import { useState, Dispatch, SetStateAction } from "react";
 
-const Navbar = () => {
+const Sidebar = () => {
   const [page, setPage] = useState<
     "home" | "explore" | "settings" | "profile" | "login" | "settings"
   >("home");
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const [isLoggedIn] = useState<boolean>(false);
   const [showProfileDisplay, setShowProfileDisplay] = useState<boolean>(false);
   const [isExpanded, setIsExpanded] = useState<boolean>(true);
 
@@ -38,7 +38,7 @@ const Navbar = () => {
       >
         {isExpanded ? <RiExpandLeftLine /> : <RiExpandRightLine />}
       </button>
-      <NavbarBtn
+      <SidebarBtn
         title={"home"}
         Icon={RiHome9Line}
         FilledIcon={RiHome9Fill}
@@ -47,7 +47,7 @@ const Navbar = () => {
         setShowProfileDisplay={setShowProfileDisplay}
         isExpanded={isExpanded}
       />
-      <NavbarBtn
+      <SidebarBtn
         title={"explore"}
         Icon={PiMagnifyingGlass}
         FilledIcon={PiMagnifyingGlassBold}
@@ -56,7 +56,7 @@ const Navbar = () => {
         setShowProfileDisplay={setShowProfileDisplay}
         isExpanded={isExpanded}
       />
-      <NavbarBtn
+      <SidebarBtn
         title={"settings"}
         Icon={PiGear}
         FilledIcon={PiGearFill}
@@ -65,7 +65,7 @@ const Navbar = () => {
         setShowProfileDisplay={setShowProfileDisplay}
         isExpanded={isExpanded}
       />
-      <NavbarBtn
+      <SidebarBtn
         title={"profile"}
         Icon={RiAccountCircleLine}
         FilledIcon={RiAccountCircleFill}
@@ -85,9 +85,9 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default Sidebar;
 
-type NavbarBtnProps = {
+type SidebarBtnProps = {
   title: "home" | "explore" | "settings" | "profile" | "login";
   Icon: IconType;
   FilledIcon: IconType;
@@ -99,7 +99,7 @@ type NavbarBtnProps = {
   isExpanded: boolean;
 };
 
-const NavbarBtn = ({
+const SidebarBtn = ({
   title,
   Icon,
   FilledIcon,
@@ -107,7 +107,7 @@ const NavbarBtn = ({
   setPage,
   setShowProfileDisplay,
   isExpanded,
-}: NavbarBtnProps) => {
+}: SidebarBtnProps) => {
   return (
     <span
       className={`flex cursor-pointer items-center justify-start rounded-md p-1.5 transition-all duration-300 ease-in-out hover:bg-[hsl(0_0%_12%)] ${page === title ? "text-red-400" : "text-white"} ${title !== "profile" ? "mb-1" : ""} ${isExpanded ? "w-50" : ""}`}
