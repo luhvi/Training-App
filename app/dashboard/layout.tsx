@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import DarkVeil from "@/components/ui/DarkVeil";
 
 import Header from "@/components/layout/Header/Header";
+import "@/styles/global.css";
 
 import { Rubik } from "next/font/google";
 
