@@ -32,12 +32,12 @@ const PricingCard = ({ title, price, subscriptionInfo }: PricingCardProps) => {
           </div>
         ))}
       </div>
-      <span className="absolute bottom-8 w-full">
+      <div className="absolute right-8 bottom-8 left-8">
         <Button
           text={`${title === "freeTrial" ? "Get Free Trial" : "Get Premium"}`}
           long={true}
         />
-      </span>
+      </div>
     </div>
   );
 };
