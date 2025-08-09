@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { LinkElementProps } from "@/models/linkElementProps.model";
+import { LinkElementProps } from "@/models/linkElementProps";
 
 export const LinkELement = ({ title, page, setPage }: LinkElementProps) => {
   const handleClick = (
