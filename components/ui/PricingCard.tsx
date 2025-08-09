@@ -22,11 +22,11 @@ const PricingCard = ({ title, price, subscriptionInfo }: PricingCardProps) => {
           <span className="mb-1 font-medium">7-Day Access To</span>
         ) : null}
         {subscriptionInfo.map((info, index) => (
-          <div className="flex items-center">
+          <div key={index} className="flex items-center">
             <span className="mr-1 text-[oklch(0.75_0_0)]">
               <IoMdCheckmarkCircleOutline />
             </span>
-            <span className="cursor-default text-[oklch(0.75_0_0)]" key={index}>
+            <span className="cursor-default text-[oklch(0.75_0_0)]">
               {info}
             </span>
           </div>
