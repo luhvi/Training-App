@@ -10,8 +10,8 @@ export default function Home() {
         <DarkVeil speed={1} />
         <Header />
       </div>
-      <main className="absolute top-90 flex flex-col items-start justify-center px-18">
-        <h1 className="mb-4 cursor-default text-5xl font-semibold text-[oklch(0.95_0_0)] transition-all duration-300 ease-in-out sm:text-6xl md:text-7xl">
+      <main className="absolute top-90 flex flex-col items-start justify-center px-10 sm:px-18">
+        <h1 className="mb-4 cursor-default text-6xl font-semibold text-[oklch(0.95_0_0)] transition-all duration-300 ease-in-out sm:text-7xl">
           The AI Training App
         </h1>
         <TextType
@@ -19,7 +19,7 @@ export default function Home() {
             "The smartest training app ever built",
             "Designed to take your training to the next level",
           ]}
-          className="mb-8 h-13 cursor-default text-lg"
+          className="mb-4 h-13 cursor-default text-lg"
           typingSpeed={75}
           pauseDuration={1500}
           showCursor={true}

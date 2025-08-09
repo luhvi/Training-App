@@ -2,7 +2,7 @@ import PricingCard from "@/components/ui/PricingCard";
 
 export default function Home() {
   return (
-    <main className="absolute top-65 flex w-full flex-col items-start justify-center px-12 lg:flex-row">
+    <main className="absolute top-65 flex w-full flex-col items-start justify-center px-10 transition-all duration-300 ease-in-out sm:px-18 lg:flex-row">
       <PricingCard
         title={"premiumSubscription"}
         price={2}
