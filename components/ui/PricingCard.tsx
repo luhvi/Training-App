@@ -19,7 +19,7 @@ const PricingCard = ({ title, price, subscriptionInfo }: PricingCardProps) => {
       </div>
       <div className="flex flex-col">
         {title === "freeTrial" ? (
-          <span className="mb-1 font-medium">7-Day Access To</span>
+          <span className="mb-1 text-[oklch(0.95_0_0)]">7-Day Access To</span>
         ) : null}
         {subscriptionInfo.map((info, index) => (
           <div key={index} className="flex items-center">
