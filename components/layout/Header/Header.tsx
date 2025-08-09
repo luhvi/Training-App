@@ -1,8 +1,8 @@
 "use client";
 
-import { usePageStore } from "@/store/page.store";
-import { useProfileDropdownStore } from "@/store/profileDropdown.store";
-import { useLoggedInStore } from "@/store/loggedIn.store";
+import { usePageStore } from "@/store/page";
+import { useProfileDropdownStore } from "@/store/profileDropdown";
+import { useLoggedInStore } from "@/store/loggedIn";
 
 import { LinkELement } from "./LinkElement";
 import { ProfileDropdownElement } from "./ProfileDropdownElement";
@@ -36,18 +36,24 @@ const Header = () => {
           }
         >
           <LinkELement title={"landingPage"} page={page} setPage={setPage} />
-
-          <LinkELement title={"tryForFreePage"} page={page} setPage={setPage} />
+          <span className="hidden sm:flex">
+            <LinkELement
+              title={"tryForFreePage"}
+              page={page}
+              setPage={setPage}
+            />
+          </span>
           <LinkELement title={"pricingPage"} page={page} setPage={setPage} />
         </div>
         <div
-          className="absolute right-18 flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-black/10 text-center font-medium text-[oklch(0.95_0_0)] shadow-lg ring-1 ring-white/10 backdrop-blur-2xl"
+          className="absolute right-10 flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-black/10 text-center font-medium text-[oklch(0.95_0_0)] shadow-lg ring-1 ring-white/10 backdrop-blur-2xl transition-all duration-300 ease-in-out sm:right-18"
           onClick={toggleProfileDropdown}
         >
           TC
         </div>
+
         {isProfileDropdownOpen && isLoggedIn ? (
-          <div className="absolute top-18 right-18 flex flex-col justify-center rounded-md bg-black/10 p-1.5 shadow-lg ring-1 ring-white/10 backdrop-blur-2xl">
+          <div className="absolute top-18 right-10 flex flex-col justify-center rounded-md bg-black/10 p-1.5 shadow-lg ring-1 ring-white/10 backdrop-blur-2xl transition-all duration-300 ease-in-out sm:right-18">
             <ProfileDropdownElement
               title={"profilePage"}
               Icon={GoPerson}

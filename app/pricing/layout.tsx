@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 
+import DarkVeil from "@/components/ui/DarkVeil";
+
+import Header from "@/components/layout/Header/Header";
 import "@/styles/global.css";
 
 import { Rubik } from "next/font/google";
@@ -21,7 +24,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${rubik.variable} antialiased`}>{children}</body>
+      <body className={`${rubik.variable} antialiased`}>
+        <main className="relative h-150 w-full">
+          <DarkVeil speed={1} />
+          <Header />
+        </main>
+        {children}
+      </body>
     </html>
   );
 }

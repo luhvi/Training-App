@@ -1,6 +1,6 @@
-import { PageStore } from "@/store/page.store";
-import { ProfileDropdownStore } from "@/store/profileDropdown.store";
-import { LoggedInStore } from "@/store/loggedIn.store";
+import { PageStore } from "@/store/page";
+import { ProfileDropdownStore } from "@/store/profileDropdown";
+import { LoggedInStore } from "@/store/loggedIn";
 import { IconType } from "react-icons";
 
 export interface ProfileDropdownElementProps {

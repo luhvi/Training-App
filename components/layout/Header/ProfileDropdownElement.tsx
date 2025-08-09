@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { ProfileDropdownElementProps } from "@/models/profileDropdownElementProps.model";
+import { ProfileDropdownElementProps } from "@/models/profileDropdownElementProps";
 
 export const ProfileDropdownElement = ({
   title,

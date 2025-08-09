@@ -1,4 +1,4 @@
-import { PageStore } from "@/store/page.store";
+import { PageStore } from "@/store/page";
 
 export interface LinkElementProps {
   title:
