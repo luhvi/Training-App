@@ -23,14 +23,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${rubik.variable} antialiased`}>
-        <main className="relative h-150 w-full">
-          <DarkVeil speed={1} />
-          <Header />
-        </main>
-        {children}
-      </body>
-    </html>
+    <main className="relative h-150 w-full">
+      <DarkVeil speed={1} />
+      <Header />
+      {children}
+    </main>
   );
 }

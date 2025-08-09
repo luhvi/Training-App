@@ -19,9 +19,5 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <html lang="en">
-      <body className={`${rubik.variable} antialiased`}>{children}</body>
-    </html>
-  );
+  return <main>{children}</main>;
 }
